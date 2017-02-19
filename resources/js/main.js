@@ -5,11 +5,11 @@ var completeSVG = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:x
 document.getElementById('add').addEventListener('click', function() {
     var value = document.getElementById('item').value;
     
-    if (value) 
+    if (value) {
         
         addItemToDo(value);
-        //document.getElementById('item').value = '';
-   
+        document.getElementById('item').value = '';
+    }
    });
 //Add an item to the todo list    
 function addItemToDo(text) {
@@ -31,37 +31,11 @@ function addItemToDo(text) {
     var complete = document.createElement('button');
     complete.classList.add('complete');
     complete.innerHTML = completeSVG;
-}
-function removeItem() {
-    var item = this.parentNode.parentNode;
-    var parent = item.parentNode;
-    parent.removeChild(item);
-    }
-    function completedItem() {
-var item = this.parentNode.parentNode;
-var parent = item.parentNode;
-    var id = parent.id;
-
-    
-
-
-//Check if the item shoudl be added to completed to re-added todo
-var target = (id === 'todo') ? document.getElementById('completed'):document.getElementById('todo');
-
-
-
-    parent.removeChild(item);
-    target.insertBefore(item, target.childNodes[0]);
-
-}
-
-
     
     //Add click event for moving to completed list
-    
     complete.addEventListener('click', completedItem);
     
-   
+    
     buttons.appendChild(remove);
     buttons.appendChild(complete);
     
@@ -70,3 +44,27 @@ var target = (id === 'todo') ? document.getElementById('completed'):document.get
     list.insertBefore(item, list.childNodes[0]);
     
 }
+function removeItem() {
+    var item = this.parentNode.parentNode;
+    var parent = item.parentNode;
+    parent.removeChild(item);
+ }
+ function completedItem() {
+    var item = this.parentNode.parentNode;
+    var parent = item.parentNode;
+    var id = parent.id;
+
+//Check if the item shoudl be added to completed to re-added todo
+    var target = (id === 'todo') ? document.getElementById('completed'):document.getElementById('todo');
+    parent.removeChild(item);
+    target.insertBefore(item, target.childNodes[0]);
+
+}
+
+
+    
+    
+   
+    
+    
+
